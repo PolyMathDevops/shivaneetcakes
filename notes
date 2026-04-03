@@ -1,0 +1,59 @@
+Final Prompt
+---------------------
+
+Build a fully responsive, feature-rich static website for a chocolate dessert shop called "Belge Delights". The website must be fully compatible with GitHub Pages. The shop sells:
+
+- Chocolate cakes (use unique names like "Fudge Royale Cake", not generic names)
+- Chocolates (e.g., "Cocoa Bliss Chocolates")
+- Chocolate ice cream (e.g., "ChocoLuxe Ice Cream")
+- Chocolate Pastree (e.g , Death By Chocolate")
+- AI cake (e.g NeuroChoco Delight)
+- Choclate brownie (eg .The Algorithm )
+
+Requirements:
+
+1. Homepage displays products in a responsive grid layout with images, product names, short descriptions,price in ($) and an "Order Now" button.
+2. Design must be mobile-friendly, visually appealing, with soft chocolate-inspired colors and modern styling.
+3. Clicking "Order Now" opens a modal popup that collects:
+   - Customer Name
+   - Phone Number
+   - Delivery Address
+4. After submitting:
+   - Redirect the user to WhatsApp with a pre-filled message to the shop’s number containing:
+     - Product name
+     - Customer name
+     - Phone
+	 - Price
+     - Address
+     - Order ID
+     - Tracking ID
+     - Thank-you note
+     - Payment details or instructions (static message)
+   - Show an on-screen confirmation message: "Order Placed! Your tracking number is #BD12345. Thank you for your order."
+   - Display the shop business number for inquiries.
+   - Additionally, provide a **pre-filled WhatsApp reply template** ready for the **shop owner** to send manually to the customer’s phone number, including:
+     - Customer Name
+     - Order ID
+	 - Price
+     - Tracking ID
+     - Thank-you message
+     - Shop contact details
+     - Estimated delivery time (e.g., “Your order will arrive in 20 minutes”)
+   - Include a **button** so the shop owner can click and open WhatsApp directly to the customer’s number with the pre-filled reply.
+   - Note: Automated sending to the customer is **not possible** on a static site; the owner must send the message manually via WhatsApp.
+5. The website should look like a full-stack e-commerce site but remain fully static (HTML, CSS, JS only).
+6. Include a header with shop name and tagline, and a footer with copyright.
+7. Add hover effects for buttons, shadowed product cards, and use Google Fonts for modern styling.
+8. Include extra static features compatible with GitHub Pages, such as:
+   - Testimonial with user reviews
+   - About the shop section
+9. Include all code in a single HTML file ready to copy into `index.html`.
+10. Make the WhatsApp order URL dynamic so it works for any selected product.
+11. Ensure it is fully functional, responsive, visually appealing, user-friendly, and looks like a premium chocolate shop.
+12. Ensure the shop owner has an easy pre-filled WhatsApp reply **button** for every order to send to the customer, including estimated delivery time (20 minutes) and shop contact.
+Note : Please make it fully functional without any issues and note please show all product images too correctly
+
+
+
+   
+other no : 8793983921
