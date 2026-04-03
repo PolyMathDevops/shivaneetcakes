@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belge Delights | Premium Chocolate Artisans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-choco: #2c1810;
+            --milk-choco: #4b3022;
+            --accent-gold: #d4af37;
+            --cream: #fffaf0;
+            --soft-brown: #8d6e63;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark-choco);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--dark-choco);
+            color: var(--accent-gold);
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        header h1 { font-size: 3.5rem; letter-spacing: 2px; }
+        header p { font-style: italic; font-size: 1.2rem; color: #eee; }
+
+        /* --- Sections --- */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 10px auto;
+        }
+
+        /* --- Grid Layout --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .price {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--soft-brown);
+            margin: 10px 0;
+        }
+
+        .btn-order {
+            background-color: var(--dark-choco);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-order:hover {
+            background-color: var(--accent-gold);
+        }
+
+        /* --- Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* --- Confirmation Section --- */
+        #confirmation-box {
+            display: none;
+            background: #dff0d8;
+            color: #3c763d;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid #d6e9c6;
+        }
+
+        .owner-actions {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #3c763d;
+        }
+
+        .btn-owner {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* --- About & Testimonials --- */
+        .about-section {
+            background: var(--milk-choco);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .testimonials {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .testimonial-card {
+            font-style: italic;
+            max-width: 700px;
+            margin: auto;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: var(--dark-choco);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Belge Delights</h1>
+    <p>Handcrafted Euphoria in Every Bite</p>
+</header>
+
+<section class="container">
+    <h2 class="section-title">Our Signature Creations</h2>
+    <div class="product-grid" id="product-container">
+        </div>
+</section>
+
+<section class="about-section">
+    <div class="container">
+        <h2 class="section-title" style="color: white;">Since 1982</h2>
+        <p>From the heart of Brussels to your doorstep, Belge Delights uses 100% ethically sourced cocoa to create symphonies of flavor. Our Master Chocolatiers blend tradition with modern innovation.</p>
+    </div>
+</section>
+
+<section class="testimonials container">
+    <h2 class="section-title">Happy Connoisseurs</h2>
+    <div class="testimonial-card">
+        <p>"The Fudge Royale Cake is life-changing. I've never tasted chocolate this rich and velvety. Fast delivery too!"</p>
+        <br>
+        <strong>- Sarah J., Food Critic</strong>
+    </div>
+</section>
+
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h3 id="modalProductName">Complete Your Order</h3>
+        <p id="modalProductPrice" style="color: var(--soft-brown); font-weight: bold;"></p>
+        
+        <form id="orderForm">
+            <input type="text" id="custName" placeholder="Full Name" required>
+            <input type="tel" id="custPhone" placeholder="Phone Number (e.g. 1234567890)" required>
+            <textarea id="custAddress" placeholder="Full Delivery Address" rows="3" required></textarea>
+            
+            <button type="submit" class="btn-order" style="width: 100%;">Confirm & Order via WhatsApp</button>
+        </form>
+
+        <div id="confirmation-box">
+            <p id="confMessage"></p>
+            <p><strong>Shop Inquiries: +1234567890</strong></p>
+            
+            <div class="owner-actions">
+                <small>Shop Owner Tools:</small><br>
+                <a href="#" id="ownerReplyBtn" class="btn-owner" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Send Confirmation to Customer
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Belge Delights. All Rights Reserved. Crafted with ❤️ and Cocoa.</p>
+</footer>
+
+<script>
+    const shopPhone = "8369438080"; // REPLACE WITH ACTUAL SHOP PHONE
+    const products = [
+        { id: 1, name: "Fudge Royale Cake", price: 45, desc: "A triple-layered dark chocolate masterpiece with ganache.", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" },
+        { id: 2, name: "Cocoa Bliss Chocolates", price: 25, desc: "Box of 12 handcrafted truffles with sea salt caramel.", img: "https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=600&q=80" },
+        { id: 3, name: "ChocoLuxe Ice Cream", price: 12, desc: "Belgian chocolate base with swirl of dark fudge.", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80" },
+        { id: 4, name: "Death By Chocolate", price: 8, desc: "Rich pastry filled with molten chocolate lava.", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80" },
+        { id: 5, name: "NeuroChoco Delight", price: 55, desc: "AI-designed flavor profile for the ultimate brain-boost.", img: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=600&q=80" },
+        { id: 6, name: "The Algorithm Brownie", price: 15, desc: "Perfectly calculated ratio of crunch to chewiness.", img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" }
+    ];
+
+    let selectedProduct = null;
+
+    // Load Products
+    const container = document.getElementById('product-container');
+    products.forEach(p => {
+        container.innerHTML += `
+            <div class="product-card">
+                <img src="${p.img}" alt="${p.name}" class="product-img">
+                <div class="product-info">
+                    <h3>${p.name}</h3>
+                    <p>${p.desc}</p>
+                    <span class="price">$${p.price}</span>
+                    <button class="btn-order" onclick="openOrderModal(${p.id})">Order Now</button>
+                </div>
+            </div>
+        `;
+    });
+
+    function openOrderModal(id) {
+        selectedProduct = products.find(p => p.id === id);
+        document.getElementById('modalProductName').innerText = selectedProduct.name;
+        document.getElementById('modalProductPrice').innerText = `Price: $${selectedProduct.price}`;
+        document.getElementById('orderModal').style.display = 'block';
+        document.getElementById('orderForm').style.display = 'block';
+        document.getElementById('confirmation-box').style.display = 'none';
+    }
+
+    function closeModal() {
+        document.getElementById('orderModal').style.display = 'none';
+    }
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('custName').value;
+        const phone = document.getElementById('custPhone').value;
+        const address = document.getElementById('custAddress').value;
+        const orderId = "BD" + Math.floor(10000 + Math.random() * 90000);
+        const trackingId = "TRACK" + Math.floor(1000 + Math.random() * 9000);
+
+        // 1. Message for the Shop
+        const shopMsg = `*New Order Received!*%0A%0A` +
+            `*Order ID:* ${orderId}%0A` +
+            `*Product:* ${selectedProduct.name}%0A` +
+            `*Price:* $${selectedProduct.price}%0A` +
+            `*Customer:* ${name}%0A` +
+            `*Phone:* ${phone}%0A` +
+            `*Address:* ${address}%0A` +
+            `*Tracking ID:* ${trackingId}%0A%0A` +
+            `_Thank you for shopping with Belge Delights! Please proceed with payment via the link provided in the next message._`;
+
+        const whatsappUrl = `https://wa.me/${shopPhone}?text=${shopMsg}`;
+
+        // 2. Reply Template for Shop Owner (to send back to customer)
+        const replyMsg = `Hello ${name},%0A%0A` +
+            `Your order *${orderId}* for *${selectedProduct.name}* ($${selectedProduct.price}) has been confirmed!%0A` +
+            `*Tracking ID:* ${trackingId}%0A` +
+            `*Est. Delivery:* 20 minutes%0A%0A` +
+            `Thank you for choosing Belge Delights!%0A` +
+            `Contact us at: +${shopPhone}`;
+
+        const ownerReplyUrl = `https://wa.me/${phone}?text=${replyMsg}`;
+
+        // UI Updates
+        document.getElementById('orderForm').style.display = 'none';
+        document.getElementById('confirmation-box').style.display = 'block';
+        document.getElementById('confMessage').innerHTML = `Order Placed! Your tracking number is <strong>#${orderId}</strong>. Thank you for your order.`;
+        document.getElementById('ownerReplyBtn').href = ownerReplyUrl;
+
+        // Redirect user to Shop WhatsApp
+        setTimeout(() => {
+            window.open(whatsappUrl, '_blank');
+        }, 1000);
+    });
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('orderModal')) {
+            closeModal();
+        }
+    }
+</script>
+
+</body>
+</html>
